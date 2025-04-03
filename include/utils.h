@@ -1,0 +1,29 @@
+#ifndef UTILS_H
+#define UTILS_H
+
+#include <string>
+#include <vector>
+
+std::vector<std::string> tokenize(const char *pStr);
+
+std::string trim(const char *pStr);
+
+template<typename T>
+std::string to_string(T Value) {
+    if constexpr (std::is_integral_v<T>) {
+        return std::to_string(Value);
+    } else if constexpr (std::is_floating_point_v<T>) {
+        return std::to_string(Value);
+    } else if constexpr (std::is_convertible_v<T, std::string>) {
+        return std::string(Value);
+    } else if constexpr (std::is_same_v<T, std::string_view>) {
+        return Value.data();
+    } else if constexpr (std::is_same_v<T, std::monostate>) {
+        return "null";
+    } else {
+        static_assert(false, "One of the passed arguments cannot be converted to a string");
+        return {};
+    }
+}
+
+#endif // UTILS_H
