@@ -16,7 +16,7 @@ std::string to_string(T Value) {
         return std::string(Value);
     } else if constexpr (std::is_same_v<T, std::string_view>) {
         return Value.data();
-    } else if constexpr (std::is_same_v<T, std::monostate>) {
+    } else if constexpr (std::is_same_v<T, std::monostate> || std::is_same_v<T, std::nullptr_t> ) {
         return "null";
     } else {
         static_assert(false, "One of the passed arguments cannot be converted to a string");
