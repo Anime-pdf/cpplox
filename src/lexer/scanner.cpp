@@ -104,7 +104,7 @@ void Lox::CScanner::ScanToken() {
         default:
             if (isdigit(c)) Number();
             else if (isalpha(c) || c == '_') Identifier();
-            else CInterpreter::Error(m_Line, "Unexpected character: " + to_string(c)); break;
+            else CInterpreter::Error(m_Line, "Unexpected character: " + std::string(1, c)); break;
     }
 }
 
