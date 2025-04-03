@@ -1,0 +1,11 @@
+[line 10] Error: Unterminated string.
+STRING "string" string
+STRING "multi
+line
+string" multi
+line
+string
+NUMBER 214 214.000000
+NUMBER 214.12 214.120000
+NUMBER 24444.11 24444.110000
+EOF  null
