@@ -10,6 +10,7 @@
 bool Lox::CInterpreter::ms_HadError = false;
 Lox::ReportFunc Lox::CInterpreter::ms_fnReport = DefaultReport;
 std::ostream* Lox::CInterpreter::ms_OutStream = &std::cout;
+std::ostream* Lox::CInterpreter::ms_ErrStream = &std::cerr;
 
 void Lox::CInterpreter::Error(const int Line, const std::string &Message) {
     Report(Line, "", Message);
@@ -32,12 +33,20 @@ void Lox::CInterpreter::AttachOutStream(std::ostream *pStream) {
     ms_OutStream = pStream ? pStream : &std::cout;
 }
 
+void Lox::CInterpreter::AttachErrStream(std::ostream *pStream) {
+    ms_ErrStream = pStream ? pStream : &std::cerr;
+}
+
+void Lox::CInterpreter::AttachDefaultErrStream() {
+    ms_ErrStream = &std::cerr;
+}
+
 void Lox::CInterpreter::AttachDefaultOutStream() {
     ms_OutStream = &std::cout;
 }
 
 void Lox::CInterpreter::DefaultReport(const int Line, const std::string& From, const std::string& Message) {
-    Out() << "[line " + to_string(Line) + "] Error" + From + ": " + Message << "\n";
+    Err() << "[line " + to_string(Line) + "] Error" + From + ": " + Message << "\n";
 }
 
 void Lox::CInterpreter::Run(const std::string &Source) {
@@ -55,7 +64,7 @@ void Lox::CInterpreter::RunFile(const char *pPath) {
     Fstrm.open(pPath);
 
     if (!Fstrm.is_open()) {
-        Out() << "Failed to open " << pPath << "\n";
+        Err() << "Failed to open " << pPath << "\n";
         exit(2);
     }
 
@@ -65,7 +74,7 @@ void Lox::CInterpreter::RunFile(const char *pPath) {
     Run(Buffer.str());
 
     if (ms_HadError) {
-        exit(44);
+        exit(65);
     }
 }
 

@@ -7,6 +7,7 @@ int main(int argc, char *argv[]) {
     std::cerr << std::unitbuf;
 
     Lox::CInterpreter::AttachDefaultOutStream();
+    Lox::CInterpreter::AttachDefaultErrStream();
     Lox::CInterpreter::AttachDefaultReportFunc();
 
     if (argc == 1) {
