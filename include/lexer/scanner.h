@@ -4,11 +4,12 @@
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
 
 #include <lexer/token.h>
 
 namespace Lox {
-    typedef std::vector<std::shared_ptr<ITokenBase> > TokenContainer;
+    typedef std::vector<std::shared_ptr<ITokenBase>> TokenContainer;
     typedef std::map<std::string, TokenType> KeywordContainer;
 
     class CScanner {
