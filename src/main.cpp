@@ -12,11 +12,9 @@ int main(int argc, char *argv[]) {
 
     if (argc == 1) {
         Lox::CInterpreter::RunPrompt();
-    }
-    else if (argc == 2) {
+    } else if (argc == 2) {
         Lox::CInterpreter::RunFile(argv[1]);
-    }
-    else {
+    } else {
         std::cerr << "Usage: " << argv[0] << " [file]\n";
         exit(1);
     }

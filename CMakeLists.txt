@@ -19,12 +19,11 @@ include(FetchContent)
     FetchContent_MakeAvailable(googletest)
 endif ()
 
-file(GLOB_RECURSE INTERPRETER_SOURCES src/*.cpp include/*.h)
+file(GLOB_RECURSE INTERPRETER_SOURCES src/*.cpp include/*.h include/*.hpp)
 list(REMOVE_ITEM INTERPRETER_SOURCES src/main.cpp)
 
 add_library(interpreter_lib ${INTERPRETER_SOURCES})
 target_include_directories(interpreter_lib PUBLIC include)
-target_include_directories(interpreter_lib PUBLIC external)
 
 add_executable(interpreter src/main.cpp)
 target_link_libraries(interpreter PRIVATE interpreter_lib)

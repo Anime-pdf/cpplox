@@ -5,12 +5,12 @@
 #include <fstream>
 #include <sstream>
 
-#include <utils.h>
+#include <utils.hpp>
 
 bool Lox::CInterpreter::ms_HadError = false;
 Lox::ReportFunc Lox::CInterpreter::ms_fnReport = DefaultReport;
-std::ostream* Lox::CInterpreter::ms_OutStream = &std::cout;
-std::ostream* Lox::CInterpreter::ms_ErrStream = &std::cerr;
+std::ostream *Lox::CInterpreter::ms_OutStream = &std::cout;
+std::ostream *Lox::CInterpreter::ms_ErrStream = &std::cerr;
 
 void Lox::CInterpreter::Error(const int Line, const std::string &Message) {
     Report(Line, "", Message);
@@ -21,7 +21,7 @@ void Lox::CInterpreter::Report(const int Line, const std::string &From, const st
     ms_HadError = true;
 }
 
-void Lox::CInterpreter::AttachReportFunc(const ReportFunc& Func) {
+void Lox::CInterpreter::AttachReportFunc(const ReportFunc &Func) {
     ms_fnReport = Func ? Func : DefaultReport;
 }
 
@@ -45,7 +45,7 @@ void Lox::CInterpreter::AttachDefaultOutStream() {
     ms_OutStream = &std::cout;
 }
 
-void Lox::CInterpreter::DefaultReport(const int Line, const std::string& From, const std::string& Message) {
+void Lox::CInterpreter::DefaultReport(const int Line, const std::string &From, const std::string &Message) {
     Err() << "[line " + to_string(Line, false) + "] Error" + From + ": " + Message << "\n";
 }
 

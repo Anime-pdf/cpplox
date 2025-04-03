@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include <utils.h>
+#include <utils.hpp>
 
 namespace Lox {
     enum TokenType {
