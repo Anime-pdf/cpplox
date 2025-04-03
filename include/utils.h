@@ -1,6 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <format>
 #include <string>
 #include <vector>
 #include <variant>
@@ -12,7 +13,7 @@ std::string to_string(T Value) {
     if constexpr (std::is_integral_v<T>) {
         return std::to_string(Value);
     } else if constexpr (std::is_floating_point_v<T>) {
-        return std::to_string(Value);
+        return std::format("{}", Value);
     } else if constexpr (std::is_convertible_v<T, std::string>) {
         return std::string(Value);
     } else if constexpr (std::is_same_v<T, std::string_view>) {
