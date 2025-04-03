@@ -46,7 +46,7 @@ void Lox::CInterpreter::AttachDefaultOutStream() {
 }
 
 void Lox::CInterpreter::DefaultReport(const int Line, const std::string& From, const std::string& Message) {
-    Err() << "[line " + to_string(Line) + "] Error" + From + ": " + Message << "\n";
+    Err() << "[line " + to_string(Line, false) + "] Error" + From + ": " + Message << "\n";
 }
 
 void Lox::CInterpreter::Run(const std::string &Source) {
