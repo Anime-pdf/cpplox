@@ -11,9 +11,9 @@ std::string trim(const char *pStr);
 template<typename T>
 std::string to_string(T Value) {
     if constexpr (std::is_integral_v<T>) {
-        return std::to_string(Value);
+        return std::format("{}.0", Value);
     } else if constexpr (std::is_floating_point_v<T>) {
-        return std::format("{}", Value);
+        return std::format("{}{}", Value, (int)Value == Value ? ".0" : "");
     } else if constexpr (std::is_convertible_v<T, std::string>) {
         return std::string(Value);
     } else if constexpr (std::is_same_v<T, std::string_view>) {
