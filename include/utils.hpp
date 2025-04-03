@@ -3,10 +3,21 @@
 
 #include <format>
 #include <string>
-#include <vector>
 #include <variant>
 
-std::string trim(const char *pStr);
+inline std::string trim(const char *pStr) {
+    std::string result(pStr);
+    while (result.starts_with(' ')) {
+        result.erase(result.begin());
+    }
+
+    while (result.ends_with(' ')) {
+        result.erase(result.end() - 1);
+    }
+
+    return result;
+}
+
 
 template<typename T>
 std::string to_string(T Value, bool ForceReal = true) {
@@ -19,7 +30,7 @@ std::string to_string(T Value, bool ForceReal = true) {
         return std::string(Value);
     } else if constexpr (std::is_same_v<T, std::string_view>) {
         return Value.data();
-    } else if constexpr (std::is_same_v<T, std::monostate> || std::is_same_v<T, std::nullptr_t> ) {
+    } else if constexpr (std::is_same_v<T, std::monostate> || std::is_same_v<T, std::nullptr_t>) {
         return "null";
     } else {
         static_assert(!std::is_same_v<T, T>, "One of the passed arguments cannot be converted to a string");
