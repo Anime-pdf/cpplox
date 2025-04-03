@@ -14,16 +14,3 @@ std::string trim(const char *pStr) {
 
     return result;
 }
-
-std::vector<std::string> tokenize(const char *pStr) {
-    std::vector<std::string> result;
-
-    auto Iss = std::istringstream{pStr};
-    auto Temp = std::string{};
-
-    while (Iss >> Temp) {
-        result.emplace_back(Temp);
-    }
-
-    return result;
-}

@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>
 
-std::vector<std::string> tokenize(const char *pStr);
-
 std::string trim(const char *pStr);
 
 template<typename T>
