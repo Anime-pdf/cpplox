@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <variant>
 
 std::string trim(const char *pStr);
 
@@ -19,7 +20,7 @@ std::string to_string(T Value) {
     } else if constexpr (std::is_same_v<T, std::monostate> || std::is_same_v<T, std::nullptr_t> ) {
         return "null";
     } else {
-        static_assert(false, "One of the passed arguments cannot be converted to a string");
+        static_assert(!std::is_same_v<T, T>, "One of the passed arguments cannot be converted to a string");
         return {};
     }
 }
